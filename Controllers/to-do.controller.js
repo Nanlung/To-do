@@ -117,10 +117,17 @@ exports.delete = (req, res) => {
 
 // Delete all To-dos from the database.
 exports.deleteAll = (req, res) => {
-  
+  Todo.destroy({
+    where: {},
+    truncate: false
+  })
+    .then(nums => {
+      res.json({ message: `${nums} Todo items were deleted successfully`})
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: err.message || "Error occured while deleting Todos"
+      })
+    })
 };
 
-// Find all published To-do
-exports.findAllPublished = (req, res) => {
-  
-};
