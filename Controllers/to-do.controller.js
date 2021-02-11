@@ -63,8 +63,29 @@ exports.findOne = (req, res) => {
 
 // Update a To-do by the id in the request
 exports.update = (req, res) => {
-  
+  const id = req.params.id;
 };
+
+Todo.update(req.body, {
+  where: {id: id}
+})
+  .then(num => {
+    if (num == 1) {
+      res.json({
+        message: "Todo item was successfully updated."
+      })
+    } else {
+      res.json({
+        message: `Cannot update Tutorial with id=${id}.`
+      })
+       
+    }
+  })
+  .catch(err => {
+    res.status(500).json({
+      message: "Error updating Todo with id= " + id
+    });
+  });
 
 // Delete a To-do with the specified id in the request
 exports.delete = (req, res) => {
