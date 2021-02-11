@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 // Retrieve all To-dos from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
-  let condition = tite ? { title: { [Op.iLike]: `%${title}%`}} : null
+  let condition = title ? { title: { [Op.iLike]: `%${title}%`}} : null
 
   Todo.findAll({ where: condition })
     .then(data => {
@@ -48,7 +48,17 @@ exports.findAll = (req, res) => {
 
 // Find a single To-do with an id
 exports.findOne = (req, res) => {
-  
+  const id = req.params.id;
+
+  Todo.findByPk(id)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json({
+        message: err.message || "Error retrieving Todo item no. " + id
+      });
+    });
 };
 
 // Update a To-do by the id in the request
