@@ -31,7 +31,19 @@ exports.create = (req, res) => {
 
 // Retrieve all To-dos from the database.
 exports.findAll = (req, res) => {
-  
+  const title = req.query.title;
+  let condition = tite ? { title: { [Op.iLike]: `%${title}%`}} : null
+
+  Todo.findAll({ where: condition })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: err.message || 'Error while retrieving Todo'
+      })
+    })
+
 };
 
 // Find a single To-do with an id
