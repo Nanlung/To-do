@@ -21,6 +21,6 @@ const todo = require('../Controllers/to-do.controller');
  router.delete("/:id", todo.delete);
 
  // Delete all Todo items
- router.delete("/", tutorials.deleteAll);
+ router.delete("/", todo.deleteAll);
 
  module.exports = router;

@@ -1,6 +1,6 @@
-const db = require('../Models');
-const Todo =db.todo;
-const Op = db.Sequelize.Op;
+const db = require('../Config/db.config');
+const Todo = require('../Models/todo.model');
+const Op = db.Sequelize.Op
 
 // Create and Save a new To-do item
 exports.create = (req, res) => {
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
   }
 
   // save todo in database
-  Todo.create(tutorial)
+  Todo.create(todo)
     .then(data => {
       res.json(data);
     })
@@ -64,7 +64,7 @@ exports.findOne = (req, res) => {
 // Update a To-do by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-};
+
 
 Todo.update(req.body, {
   where: {id: id}
@@ -86,7 +86,7 @@ Todo.update(req.body, {
       message: "Error updating Todo with id= " + id
     });
   });
-
+}
 // Delete a To-do with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
@@ -130,4 +130,3 @@ exports.deleteAll = (req, res) => {
       })
     })
 };
-
