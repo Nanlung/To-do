@@ -3,7 +3,7 @@ const Todo = require('../Models/todo.model');
 const Op = db.Sequelize.Op
 
 // Create and Save a new To-do item
-exports.create = (req, res) => {
+exports.create =  (req, res) => {
   if(!req.body.title) {
     res.status(400).json({
       message: 'Please enter Title'
