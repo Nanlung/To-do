@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
+import EditTodo from './EditTodo';
 
 const ListTodos = () =>  {
 
@@ -49,7 +50,7 @@ const ListTodos = () =>  {
       <tr key={todo.id}>
         <td>{todo.id}</td>
         <td>{todo.title}</td>
-        <td>Edit</td>
+        <td><EditTodo todo={todo}/></td>
         <td><button onClick={()=> deleteTodo(todo.id)} className="btn btn-danger">Delete</button></td>
       </tr>
 
