@@ -28,7 +28,21 @@ const ListTodos = () =>  {
       <th>Delete</th>
     </tr>
   </thead>
-  </table></Fragment>
+  </table>
+  <tbody>
+    {todos.map(todo => (
+      <tr>
+        <td>{todo.title}</td>
+        <td>{todo.description}</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </tr>
+
+    ))}
+    
+
+  </tbody>
+  </Fragment>
   )
 };
 
