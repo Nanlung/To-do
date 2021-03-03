@@ -2,46 +2,50 @@ import React, {Fragment, useEffect, useState} from 'react';
 
 const ListTodos = () =>  {
 
-  const {todos, setTodos} = useState([]);
+  const [todos, setTodos] = useState([]);
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/todos");
+      const response = await fetch("http://localhost:5000/todo");
       const jsonData =  await response.json();
+
       setTodos(jsonData);
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     getTodos();
   }, []);
 
- 
-  return (<Fragment><table class="table table-dark table-hover mt-5 text-center">
+  console.log(todos);
+  return (<Fragment>
+    
+    <table className="table table-dark table-hover mt-5 text-center">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Title</th>
-      <th>Description</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
-  </table>
   <tbody>
     {todos.map(todo => (
-      <tr>
+      <tr key={todo.id}>
+        <td>{todo.id}</td>
         <td>{todo.title}</td>
-        <td>{todo.description}</td>
         <td>Edit</td>
-        <td>Delete</td>
+        <td><button className="btn btn-danger">Delete</button></td>
       </tr>
 
     ))}
     
 
   </tbody>
+  </table>
+  
   </Fragment>
   )
 };
