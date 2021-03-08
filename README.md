@@ -1,1 +1,1 @@
-# To-do REST API using PostgreSQL
+# To-do Web App using PostgresQL, Sequelize, Express, React & Nodejs
